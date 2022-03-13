@@ -12,13 +12,15 @@ import {
   InsertComment,
   PeopleAlt,
 } from "@mui/icons-material";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import SidebarOption from "./SidebarOption";
 
 function Sidebar() {
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
+  const [channels] = useCollection(db.collection("rooms"));
+  const [user] = useAuthState(auth);
 
   return (
     <SidebarContainer>
@@ -27,7 +29,7 @@ function Sidebar() {
           <h2>Developer HQ</h2>
           <h3>
             <FiberManualRecord />
-            developer.yamin
+            {user?.displayName.replace(" ","")}
           </h3>
         </SidebarInfo>
         <Create />

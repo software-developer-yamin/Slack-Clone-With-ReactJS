@@ -1,5 +1,5 @@
 import { InfoOutlined, StarBorderOutlined } from "@mui/icons-material";
-import { useRef,useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -28,9 +28,9 @@ function Chat() {
 
   useEffect(() => {
     chatRef?.current?.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
-  }, [roomId,loading]);
+  }, [roomId, loading]);
 
   return (
     <ChatContainer>
@@ -85,6 +85,15 @@ const ChatContainer = styled.section`
   flex-grow: 1;
   overflow: scroll;
   margin-top: 60px;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 
 const ChatMessages = styled.main``;

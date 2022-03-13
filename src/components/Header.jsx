@@ -1,12 +1,19 @@
 import { AccessTime, HelpOutline, Search } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
 import styled from "styled-components";
+import { auth } from "../firebase";
 
 function Header() {
+  const [user] = useAuthState(auth);
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar
+          onClick={() => auth.signOut()}
+          src={user?.photoURL}
+          alt={user?.displayName}
+        />
         <AccessTime />
       </HeaderLeft>
       <HeaderSearch>
@@ -34,14 +41,14 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderRight = styled.section`
-flex:0.3;
-display:flex;
-align-items: flex-end;
+  flex: 0.3;
+  display: flex;
+  align-items: flex-end;
 
-> .MuiSvgIcon-root {
-  margin-left: auto !important;
-  margin-right: 30px !important;
-}
+  > .MuiSvgIcon-root {
+    margin-left: auto !important;
+    margin-right: 30px !important;
+  }
 `;
 
 const HeaderSearch = styled.section`
