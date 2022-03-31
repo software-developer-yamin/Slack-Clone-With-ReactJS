@@ -29,7 +29,7 @@ function Sidebar() {
           <h2>Developer HQ</h2>
           <h3>
             <FiberManualRecord />
-            {user?.displayName.replace(" ","")}
+            {user?.displayName.replace(" ", "")}
           </h3>
         </SidebarInfo>
         <Create />
@@ -62,11 +62,20 @@ const SidebarContainer = styled.section`
   border-top: 1px solid #49274b;
   margin-top: 60px;
   max-width: 260px;
+  overflow-y: scroll;
 
   > hr {
     margin: 10px 0;
     border: 1px solid #49274b;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
 `;
 
 const SidebarHeader = styled.header`
